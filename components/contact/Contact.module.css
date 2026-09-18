@@ -1,0 +1,164 @@
+.section {
+  position: relative;
+  width: 100%;
+  background-color: var(--ink);
+  padding: clamp(7rem, 18vh, 16rem) clamp(1.5rem, 5vw, 5rem);
+  border-top: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+/* Atmospheric subtle ember glow connected to the cinematic Hero */
+.ambientGlow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 60vw, 900px);
+  height: clamp(300px, 60vw, 700px);
+  background: radial-gradient(
+    circle,
+    rgba(192, 57, 43, 0.14) 0%,
+    rgba(212, 82, 26, 0.06) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(40px);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vh, 7rem);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+
+.headlineGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.headlineLine {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 9.5vw, 9.5rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  font-weight: 400;
+}
+
+.headlineLineEmphasized {
+  font-style: italic;
+  color: #e28743;
+}
+
+.actionsArea {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .actionsArea {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.primaryCtaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: clamp(1rem, 2vw, 1.4rem) clamp(2rem, 3.5vw, 3.25rem);
+  background-color: var(--chalk);
+  color: var(--ink);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  background-color: #fff;
+  box-shadow: 0 16px 40px rgba(192, 57, 43, 0.25);
+}
+
+.ctaSubtext {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.45);
+}
+
+.channelsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+.channelItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.channelLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.4);
+}
+
+.channelLink {
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--chalk);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.channelLink:hover {
+  color: var(--ember-warm);
+}

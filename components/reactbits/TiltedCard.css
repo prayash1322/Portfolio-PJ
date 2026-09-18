@@ -1,0 +1,11 @@
+.tilted-card-container {
+  perspective: 800px;
+  cursor: pointer;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilted-card-container {
+    transform: none !important;
+  }
+}

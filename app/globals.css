@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Palette ── */
+  --ink:         #0d0b0a;
+  --ink-2:       #141110;
+  --chalk:       #f0ece4;
+  --chalk-dim:   #a09890;
+  --ember:       #c0392b;
+  --ember-warm:  #d4521a;
+  --rule:        rgba(240, 236, 228, 0.08);
+
+  /* ── Spacing (8px base) ── */
+  --space-xs:   0.5rem;   /*  8px */
+  --space-sm:   1rem;     /* 16px */
+  --space-md:   2rem;     /* 32px */
+  --space-lg:   4rem;     /* 64px */
+  --space-xl:   8rem;     /* 128px */
+  --space-2xl: 12rem;     /* 192px */
+
+  /* ── Typography scale ── */
+  --text-label:   0.6875rem;   /* 11px — mono labels */
+  --text-caption: 0.875rem;    /* 14px */
+  --text-body:    1rem;        /* 16px */
+  --text-lg:      1.25rem;     /* 20px */
+  --text-xl:      1.5rem;      /* 24px */
+  --text-2xl:     2rem;        /* 32px */
+  --text-display: clamp(3.5rem, 9vw, 7.5rem);
+  --text-hero:    clamp(4.5rem, 13vw, 11rem);
+
+  /* ── Motion ── */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Fonts (populated by next/font variables) ── */
+  --font-display: var(--font-instrument-serif), "Georgia", serif;
+  --font-ui:      var(--font-dm-sans), "Helvetica Neue", sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), "Courier New", monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TAILWIND THEME EXTENSION
+═══════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-ink:        var(--ink);
+  --color-ink-2:      var(--ink-2);
+  --color-chalk:      var(--chalk);
+  --color-chalk-dim:  var(--chalk-dim);
+  --color-ember:      var(--ember);
+  --color-ember-warm: var(--ember-warm);
+  --font-display:     var(--font-display);
+  --font-ui:          var(--font-ui);
+  --font-mono:        var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE RESET
+═══════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Lenis owns smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--chalk);
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* Ensure images never overflow their containers */
+img,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* Remove button defaults */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove list defaults */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Focus ring — accessible but not distracting */
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+/* Selection */
+::selection {
+  background: var(--ember);
+  color: var(--chalk);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES
+═══════════════════════════════════════════════════════════════ */
+
+.text-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+
+.text-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+.text-hero {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+═══════════════════════════════════════════════════════════════ */
+
+.container-site {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 5rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TRANSITION INITIAL STATES
+   GSAP animates these elements into view after the loader exits.
+   CSS sets opacity:0 so there's no flash before GSAP takes over.
+   Once GSAP runs its fromTo/to tweens, inline styles override CSS.
+═══════════════════════════════════════════════════════════════ */
+
+/* Hero section — revealed by the loader timeline */
+[data-hero-section] {
+  opacity: 0;
+}
+
+/* Navbar — revealed by the loader timeline after hero text */
+#navbar {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR (Thin & Ember Warm)
+═══════════════════════════════════════════════════════════════ */
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ember-warm) #0d0b0a;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0b0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ember-warm);
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+

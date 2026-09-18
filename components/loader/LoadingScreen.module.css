@@ -1,0 +1,167 @@
+/* ─────────────────────────────────────────────────────────────────
+   LoadingScreen.module.css
+   Scope: full-viewport loading overlay
+   Philosophy: CSS handles structure + marquee loop.
+                GSAP handles only the counter + exit.
+───────────────────────────────────────────────────────────────── */
+
+/* Overlay -------------------------------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Warm off-white — clean, near-flat */
+  background-color: #f2efe9;
+
+  /* Prevent content beneath bleeding through during exit */
+  will-change: transform;
+}
+
+/* Marquee wrapper ------------------------------------------------ */
+.marqueeWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+
+  /* Exactly 50% shift — content is duplicated 2× so the seam is invisible */
+  animation: marqueeScroll 25s linear infinite;
+  will-change: transform;
+}
+
+.marqueeItem {
+  /* Deliberately massive — typographic wallpaper effect */
+  font-size: clamp(5rem, 13vw, 11rem);
+  font-weight: 900;
+  font-family: var(--font-dm-sans, "DM Sans", sans-serif);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #0d0b0a;
+  opacity: 0.075;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-right: 0.4em;
+  user-select: none;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move exactly one half of the total track width; content is 8 spans × 2 = seamless */
+    transform: translateX(-50%);
+  }
+}
+
+/* Pill ----------------------------------------------------------- */
+.pill {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 6vw, 5rem);
+
+  padding: clamp(1rem, 2.2vw, 1.4rem) clamp(2rem, 5vw, 4rem);
+
+  background-color: #0d0b0a;
+  border-radius: 9999px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.14);
+
+  /* Subtle cool-purple highlight on the top-left edge — restrained, not glowing */
+  outline: 1.5px solid transparent;
+  background-clip: padding-box;
+
+  /* Inner edge shimmer via pseudo-element — cleaner than multiple box-shadows */
+  isolation: isolate;
+
+  /* Anchor for GSAP scale transform */
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.pillBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  /* Clip-path mask trick: show only the border */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pillBorder::before {
+  content: "";
+  position: absolute;
+  /* Make it massive so it covers the pill corners while spinning */
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 60%,
+    rgba(138, 90, 219, 0.9) 85%,
+    rgba(140, 160, 220, 0.9) 100%
+  );
+  animation: borderSpin 4s linear infinite;
+}
+
+@keyframes borderSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pillLabel {
+  font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+  font-weight: 500;
+  font-family: var(--font-dm-sans, "DM Sans", sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.5);
+  user-select: none;
+}
+
+.pillPercent {
+  font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  font-family: var(--font-jetbrains-mono, "JetBrains Mono", monospace);
+  letter-spacing: 0.06em;
+  color: #f0ece4;
+  min-width: 3.5ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* Reduced motion: disable marquee, skip counter */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}

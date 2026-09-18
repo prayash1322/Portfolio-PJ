@@ -1,0 +1,76 @@
+/* ─────────────────────────────────────────────────────────────────
+   Navbar.module.css
+   GlassSurface minimal navbar — translucent, chromatic distortion, subtle.
+───────────────────────────────────────────────────────────────── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  /* Outer padding creates breathing room */
+  padding: clamp(1rem, 2.5vh, 1.5rem) clamp(1.25rem, 4vw, 3rem);
+
+  pointer-events: none; /* Only inner glass captures clicks */
+}
+
+/* GlassSurface pill container */
+.glassPill {
+  max-width: 900px;
+  margin: 0 auto;
+  pointer-events: auto;
+  width: 100% !important;
+}
+
+/* Space out brand and links within GlassSurface content wrapper */
+.glassPill :global(.glass-surface__content) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.5rem 0.35rem 1.25rem;
+}
+
+/* ── Brand ──────────────────────────────────────────────────────── */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  transition: opacity 0.2s ease;
+}
+
+.brand:hover .brandName {
+  opacity: 0.65;
+}
+
+/* ── Navigation links ───────────────────────────────────────────── */
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .glassPill :global(.glass-surface__content) {
+    padding: 0.25rem 0.35rem 0.25rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glassPill :global(.glass-surface__content) {
+    padding: 0.2rem 0.25rem 0.2rem 0.75rem;
+  }
+}
+

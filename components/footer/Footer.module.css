@@ -1,0 +1,80 @@
+.footer {
+  position: relative;
+  width: 100%;
+  background-color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding: clamp(2.5rem, 5vh, 4rem) clamp(1.5rem, 5vw, 5rem);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.initialMark {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--chalk);
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(240, 236, 228, 0.2);
+  border-radius: 4px;
+}
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: rgba(240, 236, 228, 0.45);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--chalk);
+}
+
+.backToTop {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.4);
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.backToTop:hover {
+  color: var(--chalk);
+}
