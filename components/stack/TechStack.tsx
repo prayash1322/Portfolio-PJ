@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Decal, Environment, useTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -199,10 +199,12 @@ function TechSphereItem({
         <mesh
           visible={false}
           onPointerEnter={(e) => {
+            if (e.pointerType === "touch") return;
             e.stopPropagation();
             onHover(tech.id);
           }}
           onPointerLeave={(e) => {
+            if (e.pointerType === "touch") return;
             e.stopPropagation();
             onLeave(tech.id);
           }}
@@ -699,6 +701,24 @@ export default function TechStack() {
     return () => ctx.revert();
   }, [reducedMotion]);
 
+  const [isInView, setIsInView] = useState(true);
+
+  // Pause Three.js frameloop when offscreen to preserve 100% GPU/CPU for other sections
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="stack"
@@ -718,6 +738,7 @@ export default function TechStack() {
         <div data-stack-scene className={styles.sceneWrap}>
           <Canvas
             className={styles.scene}
+            frameloop={isInView ? "always" : "never"}
             style={{ touchAction: "pan-y" }}
             shadows={{ enabled: true, type: THREE.PCFShadowMap }}
             dpr={[1, 2]}

@@ -540,6 +540,7 @@ export default function ParticleText({
     };
 
     const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
       const rect = canvas.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
@@ -553,6 +554,7 @@ export default function ParticleText({
     };
 
     const handlePointerEnter = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
       const rect = canvas.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;

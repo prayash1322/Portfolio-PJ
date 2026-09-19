@@ -16,6 +16,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   const divRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
     const el = divRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();

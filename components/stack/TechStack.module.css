@@ -44,6 +44,7 @@
   justify-content: flex-end;
   align-items: center;
   pointer-events: auto;
+  touch-action: pan-y;
 }
 
 .scene {
@@ -176,6 +177,7 @@
     margin-top: 0.75rem;
     overflow: visible;
     pointer-events: auto;
+    touch-action: pan-y;
   }
 
   .badge {

@@ -106,6 +106,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                         sizes="(max-width: 960px) 100vw, 55vw"
                         className={styles.projectImage}
                         priority={index < 2}
+                        loading={index < 2 ? undefined : "lazy"}
+                        decoding="async"
                       />
                     </div>
                   ) : (

@@ -15,7 +15,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     // 1. Ensure GSAP and ScrollTrigger are registered
     registerGSAP();
 
-    // 2. Initialize Lenis
+    // 2. Initialize Lenis (smooth wheel on desktop, native 120Hz untouched touch on mobile)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -23,7 +23,8 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1,
+      syncTouch: false,
     });
 
     lenisRef.current = lenis;
@@ -39,7 +40,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       if (typeof window !== "undefined") {

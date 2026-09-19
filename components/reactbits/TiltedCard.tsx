@@ -36,6 +36,7 @@ export default function TiltedCard({
   const scale = useSpring(1, springValues);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const offsetX = e.clientX - rect.left - rect.width / 2;

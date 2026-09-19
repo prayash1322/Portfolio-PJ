@@ -76,6 +76,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -85,7 +87,14 @@ body {
   font-size: var(--text-body);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
   min-height: 100dvh;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Ensure images never overflow their containers */

@@ -106,9 +106,8 @@ export function renderCanvasFrame(
   if (!ctx) return;
 
   const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
-  const rect = canvas.getBoundingClientRect();
-  const width = Math.round(rect.width);
-  const height = Math.round(rect.height);
+  const width = canvas.clientWidth || Math.round(canvas.getBoundingClientRect().width);
+  const height = canvas.clientHeight || Math.round(canvas.getBoundingClientRect().height);
 
   if (width === 0 || height === 0) return;
 

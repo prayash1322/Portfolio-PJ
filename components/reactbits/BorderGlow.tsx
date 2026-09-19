@@ -229,6 +229,7 @@ export default function BorderGlow({
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.pointerType === "touch") return;
       const card = cardRef.current;
       if (!card) return;
 
