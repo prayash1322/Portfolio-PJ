@@ -63,8 +63,8 @@
 
 @media (max-width: 768px) {
   .overlayContainer {
-    padding: 1.5rem 1.25rem 3.5rem;
-    justify-content: flex-end;
+    padding: 5.5rem 1.25rem 2rem;
+    justify-content: center;
     gap: 1.15rem;
   }
 

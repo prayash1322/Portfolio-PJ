@@ -15,9 +15,9 @@ export default function IntroAbout() {
     startRadius: 24,
     endRadius: 0,
     mediaZoom: 1.15,
-    scrollDistance: 1.25,
-    holdDistance: 0.5,
-    smoothing: 0.05,
+    scrollDistance: 0.65,
+    holdDistance: 0,
+    smoothing: 0.04,
     overlayScrim: 0.84,
   });
 
@@ -31,8 +31,8 @@ export default function IntroAbout() {
           startRadius: 18,
           endRadius: 0,
           mediaZoom: 1.08,
-          scrollDistance: 0.9,
-          holdDistance: 0.4,
+          scrollDistance: 0.5,
+          holdDistance: 0,
           smoothing: 0.04,
           overlayScrim: 0.86,
         });
@@ -43,9 +43,9 @@ export default function IntroAbout() {
           startRadius: 20,
           endRadius: 0,
           mediaZoom: 1.12,
-          scrollDistance: 1.0,
-          holdDistance: 0.45,
-          smoothing: 0.05,
+          scrollDistance: 0.55,
+          holdDistance: 0,
+          smoothing: 0.04,
           overlayScrim: 0.84,
         });
       } else if (w <= 1280) {
@@ -55,9 +55,9 @@ export default function IntroAbout() {
           startRadius: 24,
           endRadius: 0,
           mediaZoom: 1.14,
-          scrollDistance: 1.1,
-          holdDistance: 0.5,
-          smoothing: 0.05,
+          scrollDistance: 0.6,
+          holdDistance: 0,
+          smoothing: 0.04,
           overlayScrim: 0.82,
         });
       } else {
@@ -67,9 +67,9 @@ export default function IntroAbout() {
           startRadius: 24,
           endRadius: 0,
           mediaZoom: 1.15,
-          scrollDistance: 1.25,
-          holdDistance: 0.5,
-          smoothing: 0.05,
+          scrollDistance: 0.65,
+          holdDistance: 0,
+          smoothing: 0.04,
           overlayScrim: 0.84,
         });
       }

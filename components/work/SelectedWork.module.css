@@ -12,7 +12,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(3rem, 6vh, 5.5rem);
+  gap: clamp(1.5rem, 3vh, 2.5rem);
 }
 
 .sectionHeader {
@@ -52,13 +52,14 @@
 .projectRow {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(1.75rem, 3.5vw, 3.5rem);
+  gap: clamp(1rem, 2.5vw, 2rem);
   align-items: center;
 }
 
 @media (min-width: 960px) {
   .projectRow {
     grid-template-columns: 1.48fr 1fr;
+    gap: clamp(1.75rem, 3.5vw, 3.5rem);
   }
 
   .projectRowReverse {
@@ -185,7 +186,7 @@
 .contentColumn {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vh, 1.5rem);
+  gap: clamp(0.65rem, 1.5vh, 1.25rem);
 }
 
 .metaHeader {

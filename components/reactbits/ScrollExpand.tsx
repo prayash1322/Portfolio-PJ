@@ -139,12 +139,12 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     }
 
     if (scrimRef.current) {
-      const scrimProgress = smoothstep(0.2, 0.85, p);
+      const scrimProgress = smoothstep(0.15, 0.7, p);
       scrimRef.current.style.opacity = `${c.overlayScrim * scrimProgress}`;
     }
 
     if (titleRef.current) {
-      const out = smoothstep(0.4, 0.88, p);
+      const out = smoothstep(0.25, 0.7, p);
       titleRef.current.style.opacity = `${1 - out}`;
       titleRef.current.style.transform = `translate3d(0, ${-28 * out}px, 0) scale(${1 + 0.06 * out})`;
     }
@@ -156,9 +156,9 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     }
 
     if (overlayRef.current) {
-      const inn = smoothstep(0.5, 0.88, p);
+      const inn = smoothstep(0.2, 0.72, p);
       overlayRef.current.style.opacity = `${inn}`;
-      overlayRef.current.style.transform = `translate3d(0, ${28 * (1 - inn)}px, 0)`;
+      overlayRef.current.style.transform = `translate3d(0, ${24 * (1 - inn)}px, 0)`;
     }
   }, [mediaType]);
 
@@ -180,7 +180,9 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     const stage = stageRef.current;
     if (!root || !track || !stage) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let raf = 0;
     let current = 0;

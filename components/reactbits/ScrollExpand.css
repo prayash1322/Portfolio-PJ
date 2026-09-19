@@ -1,10 +1,10 @@
 .scroll-expand {
   position: relative;
   width: 100%;
-  height: 100%;
 }
 
 .scroll-expand--scroller {
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
@@ -24,7 +24,10 @@
 .scroll-expand__stage {
   position: sticky;
   top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   --se-title-size: 4rem;
 }

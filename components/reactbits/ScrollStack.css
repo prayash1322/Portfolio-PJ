@@ -61,7 +61,7 @@
 /* Natural hold spacer without excessive blank void */
 .scroll-stack-end {
   width: 100%;
-  height: clamp(120px, 18vh, 180px);
+  height: clamp(80px, 12vh, 140px);
   pointer-events: none;
   opacity: 0;
 }
